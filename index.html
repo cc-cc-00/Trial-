@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic Web Page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" >
+    <link href="style.css" rel="stylesheet">
+  </head> 
+  <body>
+    <!--Input Chain-->
+    <input type="checkbox" id="checkbox_front_cover">
+    <input type="checkbox" id="checkbox_page_1">
+    <input type="checkbox" id="checkbox_page_2">
+    <input type="checkbox" id="checkbox_page_3">
+    <input type="checkbox" id="checkbox_back_cover">
+    
+    
+    <div class="book">
+      <!--Cover-->
+      <div class="front_cover">
+        <div class="front_FC">
+          <h1>Title.</h1>
+          <label for="checkbox_front_cover"></label>
+        </div>
+        <div class="back_FC">
+          <h1>Inside.</h1>
+          <label for="checkbox_front_cover"></label>
+        </div>
+      </div>
+      <!--Page Stack-->
+      <div class="page" id="page1">
+        <div class="front_page">
+          <p>Hello.</p>
+          <label for="checkbox_page_1"></label>
+        </div>
+        <div class="back_page">
+          <p>There!</p>
+          <label for="checkbox_page_1"></label>
+        </div>
+      </div>
+      
+      <div class="page" id="page2">
+        <div class="front_page">
+          <p>Little.</p>
+          <label for="checkbox_page_2"></label>
+        </div>
+        <div class="back_page">
+          <p>One.</p>
+          <label for="checkbox_page_2"></label>
+        </div>
+      </div>
+      
+      <div class="page" id="page3">
+        <div class="front_page">
+          <p>And.</p>
+          <label for="checkbox_page_3"></label>
+        </div>
+        <div class="back_page">
+          <p>Goodbye!</p>
+          <label for="checkbox_page_3"></label>
+        </div>
+      </div>
+      <!--Cover 2: ELECTRIC BOOGALOO-->
+      <div class="back_cover">
+        <div class="back_BC">
+          <h1>Inside End.</h1>
+          <label for="checkbox_back_cover"></label>
+        </div>
+        <div class="front_BC">
+          <h1>Title Back</h1>
+          <label for="checkbox_back_cover"></label>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
