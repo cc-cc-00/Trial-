@@ -1,0 +1,255 @@
+:root {
+  --Max: 100%;
+  --Transition: transform 1.5s, z-index 0.3s 0.3s;
+  --Start: translateX(175px);
+  --End: translateX(350px);
+  
+  --Book-Width: 350px;
+  --Book-Height: 450px;
+  
+  --Outer_Curve: 0 15px 15px 0;
+  --Inner_Curve: 15px 0 0 15px;
+  --Flip: rotateY(-180deg);
+}
+
+body {
+  background: #344;
+  color: #000;
+  padding: 25px;
+  font-family: sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  padding: 1rem;
+}
+input {
+  display: none;
+}
+
+/*Need to find a place for these
+transform-style: preserve-3d;
+perspective: 10px;
+*/
+
+.book {
+  width: var(--Book-Width);
+  height: var(--Book-Height);
+  position: relative;
+  transition-duration: 1s;
+  perspective: 1500px;
+}
+/*All*/
+.front_cover, .page, .back_cover {
+	transform-origin: center left;
+	transform-style: preserve-3d;
+	position: absolute;
+	transition: var(--Transition);
+	border-radius: var(--Outer_Curve);
+  box-shadow: 0 0 5px rgb(41, 41, 41);
+}
+
+.front_FC, .back_FC, .front_BC, .back_BC, .front_page, .back_page {
+	height: var(--Max);
+	width: var(--Max);
+	position: absolute;
+	backface-visibility: hidden;
+}
+
+.front_FC, .back_FC, .front_BC, .back_BC {
+  display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/*.front_cover label:hover {
+  box-shadow: 0 0 5px 5px rgb(255, 255, 150);
+}
+.page label:hover {
+  box-shadow: 0 0 5px 5px rgb(255, 255, 150);
+}
+.back_cover label:hover {
+  box-shadow: 0 0 5px 5px rgb(255, 255, 150);
+}*/
+
+.front_cover label:hover, .page label:hover, .back_cover label:hover {
+  box-shadow: 0 0 5px 2.5px rgb(255, 255, 150);
+}
+
+/*Cover*/
+.front_cover {
+  height: var(--Max);
+  width: var(--Max);
+  z-index: 99;
+}
+.front_FC {
+  background-color: #08D;
+  border-radius: var(--Outer_Curve);
+}
+.back_FC {
+  background-color: #06D;
+  border-radius: var(--Inner_Curve);
+  transform: var(--Flip);
+}
+/*Page Stackn't*/
+.page {
+  background-color: #ffffff;
+  width: calc(var(--Book-Width) - 20px);
+  height: calc(var(--Book-Height) - 20px);
+  margin-top: 10px;
+  transform: rotateY(0deg);
+  /*transition-duration: 1.5s;*/
+}
+.front_page {
+	box-sizing: border-box;
+  border-radius: var(--Outer_Curve);
+}
+.back_page {
+  transform: var(--Flip);
+  border-radius: var(--Inner_Curve);
+}
+/*Cover 2: ELECTRIC BOOGALOO*/
+.back_cover {
+  height: var(--Max);
+  width: var(--Max);
+  z-index: 1;
+}
+.front_BC {
+  background-color: #08D;
+  border-radius: var(--Inner_Curve);
+  transform: var(--Flip);
+}
+.back_BC {
+  background-color: #06D;
+  border-radius: var(--Outer_Curve);
+}
+/*Labels*/
+/*label {
+  background: red;
+  opacity: 0.2;
+}*/
+label {
+  transform-origin: center left;
+}
+
+/*.page label {
+  background: red;
+  opacity: 0.2;
+}*/
+
+/*.front_cover label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: var(--Point);
+}
+
+.page label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: var(--Point);
+}
+
+.back_cover label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: var(--Point);
+}*/
+
+:is(.front_cover, .page, .back_cover) label {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  border-radius: inherit;
+}
+.front_page label {
+  width: 15%;
+  left: 281px;
+}
+.back_page label {
+  width: 15%;
+  right: 281px;
+}
+/*Pageth Stackth*/
+#page1 {
+  z-index: 4; 
+}
+#page2 {
+  z-index: 3; 
+}
+#page3 {
+  z-index: 2; 
+}
+/*Input control*/
+#checkbox_front_cover:checked ~ .book {
+  transform: var(--Start);
+}
+#checkbox_front_cover:checked ~ .book .front_cover {
+  transition: var(--Transition);
+  transform: var(--Flip);
+  z-index: 1;
+}
+/*Page Stack I guess, I don't know? WHAT DO YOU WANT ME TO DO!!! I have been working on this code for so long like some piece of Candy! I'm sick of doing this but I have this woman shouting at me! [monotone voice] "go cude boy go, show off those egde." I DON'T KNOW WHAT THAT MEAN!!! I'M CRYING!!!*/
+#checkbox_page_1:checked ~ .book #page1 {
+  transition: var(--Transition);
+  transform: var(--Flip);
+  z-index: 2;
+}
+#checkbox_page_2:checked ~ .book #page2 {
+  transition: var(--Transition);
+  transform: var(--Flip);
+  z-index: 3;
+}
+#checkbox_page_3:checked ~ .book #page3 {
+  transition: var(--Transition);
+  transform: var(--Flip);
+  z-index: 4;
+}
+
+
+#checkbox_back_cover:checked ~ .book {
+  transform: var(--End);
+}
+#checkbox_back_cover:checked ~ .book .back_cover {
+  transition: var(--Transition);
+  transform: var(--Flip);
+  z-index: 99;
+}
+
+
+/*code from Testorama https://codepen.io/TestoramaNet
+And https://codepen.io/TestoramaNet/pen/dPGyqNp*/
+/*When left and right pages are checked (including during the back page transition), prevent being able to click the left page again*/
+ #checkbox_front_cover:checked + input:checked ~ .book label[for="checkbox_front_cover"],
+#checkbox_page_1:checked + input:checked ~ .book label[for="checkbox_page_1"],
+#checkbox_page_2:checked + input:checked ~ .book label[for="checkbox_page_2"],
+#checkbox_page_3:checked + input:checked ~ .book label[for="checkbox_page_3"] {
+    pointer-events: none;
+} 
+
+/*input:nth-of-type(1):checked + input:checked ~ .book label:nth-of-type(1),
+input:nth-of-type(2):checked + input:checked ~ .book label:nth-of-type(2),
+input:nth-of-type(3):checked + input:checked ~ .book label:nth-of-type(3),
+input:nth-of-type(4):checked + input:checked ~ .book label:nth-of-type(4) {
+    pointer-events: var(--Null);
+} */
+
+/*When left and right are unchecked (including during the forward page transition), prevent being able to click the right page again*/
+ input:not(:checked) + #checkbox_page_1:not(:checked) ~ .book label[for="checkbox_page_1"],
+input:not(:checked) + #checkbox_page_2:not(:checked) ~ .book label[for="checkbox_page_2"],
+input:not(:checked) + #checkbox_page_3:not(:checked) ~ .book label[for="checkbox_page_3"],
+input:not(:checked) + #checkbox_back_cover:not(:checked) ~ .book label[for="checkbox_back_cover"] {
+  pointer-events: none;
+} 
+
+/*input:not(:checked) + input:nth-of-type(2):not(:checked) ~ .book label:nth-of-type(2),
+input:not(:checked) + input:nth-of-type(3):not(:checked) ~ .book label:nth-of-type(3),
+input:not(:checked) + input:nth-of-type(4):not(:checked) ~ .book label:nth-of-type(4),
+input:not(:checked) + input:nth-of-type(5):not(:checked) ~ .book label:nth-of-type(5) {
+  pointer-events: var(--Null);
+}*/
+
